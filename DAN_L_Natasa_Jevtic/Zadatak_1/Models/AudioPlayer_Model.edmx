@@ -1,0 +1,369 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AudioPlayerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblPlayedSong">
+          <Key>
+            <PropertyRef Name="PlayedSongId" />
+          </Key>
+          <Property Name="PlayedSongId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SongId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSong">
+          <Key>
+            <PropertyRef Name="SongId" />
+          </Key>
+          <Property Name="SongId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Author" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Duration" Type="time" Precision="7" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AudioPlayer.dbo.vwPlayedSong' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwPlayedSong">
+          <Key>
+            <PropertyRef Name="SongId" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Author" />
+            <PropertyRef Name="Duration" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="PlayedSongId" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="Password" />
+          </Key>
+          <Property Name="SongId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Author" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Duration" Type="time" Precision="7" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="PlayedSongId" Type="int" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AudioPlayer.dbo.vwSong' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwSong">
+          <Key>
+            <PropertyRef Name="SongId" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Author" />
+            <PropertyRef Name="Duration" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="Password" />
+          </Key>
+          <Property Name="SongId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Author" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Duration" Type="time" Precision="7" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AudioPlayer.dbo.vwUser' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="Password" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__tblPlayed__SongI__0CBAE877">
+          <End Role="tblSong" Type="Self.tblSong" Multiplicity="1" />
+          <End Role="tblPlayedSong" Type="Self.tblPlayedSong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSong">
+              <PropertyRef Name="SongId" />
+            </Principal>
+            <Dependent Role="tblPlayedSong">
+              <PropertyRef Name="SongId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblSong__UserId__07F6335A">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblSong" Type="Self.tblSong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblSong">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AudioPlayerModelStoreContainer">
+          <EntitySet Name="tblPlayedSong" EntityType="Self.tblPlayedSong" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSong" EntityType="Self.tblSong" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vwPlayedSong" EntityType="Self.vwPlayedSong" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwPlayedSong].[SongId] AS [SongId], 
+    [vwPlayedSong].[Name] AS [Name], 
+    [vwPlayedSong].[Author] AS [Author], 
+    [vwPlayedSong].[Duration] AS [Duration], 
+    [vwPlayedSong].[UserId] AS [UserId], 
+    [vwPlayedSong].[PlayedSongId] AS [PlayedSongId], 
+    [vwPlayedSong].[Username] AS [Username], 
+    [vwPlayedSong].[Password] AS [Password]
+    FROM [dbo].[vwPlayedSong] AS [vwPlayedSong]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwSong" EntityType="Self.vwSong" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwSong].[SongId] AS [SongId], 
+    [vwSong].[Name] AS [Name], 
+    [vwSong].[Author] AS [Author], 
+    [vwSong].[Duration] AS [Duration], 
+    [vwSong].[UserId] AS [UserId], 
+    [vwSong].[Username] AS [Username], 
+    [vwSong].[Password] AS [Password]
+    FROM [dbo].[vwSong] AS [vwSong]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwUser" EntityType="Self.vwUser" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwUser].[UserId] AS [UserId], 
+    [vwUser].[Username] AS [Username], 
+    [vwUser].[Password] AS [Password]
+    FROM [dbo].[vwUser] AS [vwUser]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__tblPlayed__SongI__0CBAE877" Association="Self.FK__tblPlayed__SongI__0CBAE877">
+            <End Role="tblSong" EntitySet="tblSong" />
+            <End Role="tblPlayedSong" EntitySet="tblPlayedSong" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblSong__UserId__07F6335A" Association="Self.FK__tblSong__UserId__07F6335A">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblSong" EntitySet="tblSong" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AudioPlayerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblPlayedSong">
+          <Key>
+            <PropertyRef Name="PlayedSongId" />
+          </Key>
+          <Property Name="PlayedSongId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SongId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblSong" Relationship="Self.FK__tblPlayed__SongI__0CBAE877" FromRole="tblPlayedSong" ToRole="tblSong" />
+        </EntityType>
+        <EntityType Name="tblSong">
+          <Key>
+            <PropertyRef Name="SongId" />
+          </Key>
+          <Property Name="SongId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Author" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Duration" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblPlayedSongs" Relationship="Self.FK__tblPlayed__SongI__0CBAE877" FromRole="tblSong" ToRole="tblPlayedSong" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK__tblSong__UserId__07F6335A" FromRole="tblSong" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblSongs" Relationship="Self.FK__tblSong__UserId__07F6335A" FromRole="tblUser" ToRole="tblSong" />
+        </EntityType>
+        <EntityType Name="vwPlayedSong">
+          <Key>
+            <PropertyRef Name="SongId" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Author" />
+            <PropertyRef Name="Duration" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="PlayedSongId" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="Password" />
+          </Key>
+          <Property Name="SongId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Author" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Duration" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="PlayedSongId" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vwSong">
+          <Key>
+            <PropertyRef Name="SongId" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Author" />
+            <PropertyRef Name="Duration" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="Password" />
+          </Key>
+          <Property Name="SongId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Author" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Duration" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vwUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="Password" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__tblPlayed__SongI__0CBAE877">
+          <End Role="tblSong" Type="Self.tblSong" Multiplicity="1" />
+          <End Role="tblPlayedSong" Type="Self.tblPlayedSong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSong">
+              <PropertyRef Name="SongId" />
+            </Principal>
+            <Dependent Role="tblPlayedSong">
+              <PropertyRef Name="SongId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblSong__UserId__07F6335A">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblSong" Type="Self.tblSong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblSong">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AudioPlayerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblPlayedSongs" EntityType="Self.tblPlayedSong" />
+          <EntitySet Name="tblSongs" EntityType="Self.tblSong" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+          <EntitySet Name="vwPlayedSongs" EntityType="Self.vwPlayedSong" />
+          <EntitySet Name="vwSongs" EntityType="Self.vwSong" />
+          <EntitySet Name="vwUsers" EntityType="Self.vwUser" />
+          <AssociationSet Name="FK__tblPlayed__SongI__0CBAE877" Association="Self.FK__tblPlayed__SongI__0CBAE877">
+            <End Role="tblSong" EntitySet="tblSongs" />
+            <End Role="tblPlayedSong" EntitySet="tblPlayedSongs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblSong__UserId__07F6335A" Association="Self.FK__tblSong__UserId__07F6335A">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblSong" EntitySet="tblSongs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AudioPlayerModelStoreContainer" CdmEntityContainer="AudioPlayerEntities">
+          <EntitySetMapping Name="tblPlayedSongs">
+            <EntityTypeMapping TypeName="AudioPlayerModel.tblPlayedSong">
+              <MappingFragment StoreEntitySet="tblPlayedSong">
+                <ScalarProperty Name="PlayedSongId" ColumnName="PlayedSongId" />
+                <ScalarProperty Name="SongId" ColumnName="SongId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSongs">
+            <EntityTypeMapping TypeName="AudioPlayerModel.tblSong">
+              <MappingFragment StoreEntitySet="tblSong">
+                <ScalarProperty Name="SongId" ColumnName="SongId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="AudioPlayerModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwPlayedSongs">
+            <EntityTypeMapping TypeName="AudioPlayerModel.vwPlayedSong">
+              <MappingFragment StoreEntitySet="vwPlayedSong">
+                <ScalarProperty Name="SongId" ColumnName="SongId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PlayedSongId" ColumnName="PlayedSongId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwSongs">
+            <EntityTypeMapping TypeName="AudioPlayerModel.vwSong">
+              <MappingFragment StoreEntitySet="vwSong">
+                <ScalarProperty Name="SongId" ColumnName="SongId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwUsers">
+            <EntityTypeMapping TypeName="AudioPlayerModel.vwUser">
+              <MappingFragment StoreEntitySet="vwUser">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
