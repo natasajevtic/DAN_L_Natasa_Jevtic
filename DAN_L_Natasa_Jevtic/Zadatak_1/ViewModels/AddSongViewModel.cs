@@ -91,7 +91,8 @@ namespace Zadatak_1.ViewModels
 
         public void SaveExecute()
         {
-            if (String.IsNullOrEmpty(Song.Name) || String.IsNullOrEmpty(Song.Author) || String.IsNullOrEmpty(Song.Duration.ToString()))
+            if (String.IsNullOrEmpty(Song.Name) || String.IsNullOrEmpty(Song.Author) || String.IsNullOrEmpty(Song.Duration.ToString())
+                || Song.Duration.ToString() == "00:00:00")
             {
                 MessageBox.Show("Please fill all fields.", "Notification");
             }
