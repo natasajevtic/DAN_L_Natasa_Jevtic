@@ -146,19 +146,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Models\AudioPlayer_Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AudioPlayer_Model.Context.cs</LastGenOutput>
       <DependentUpon>AudioPlayer_Model.edmx</DependentUpon>
+      <LastGenOutput>AudioPlayer_Model.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\AudioPlayer_Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>AudioPlayer_Model.edmx</DependentUpon>
       <LastGenOutput>AudioPlayer_Model.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -84,7 +84,7 @@ warning 6002: The table/view 'AudioPlayer.dbo.vwUser' does not have a primary ke
           <Property Name="Username" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
-        <Association Name="FK__tblPlayed__SongI__0CBAE877">
+        <Association Name="FK__tblPlayed__SongI__35BCFE0A">
           <End Role="tblSong" Type="Self.tblSong" Multiplicity="1" />
           <End Role="tblPlayedSong" Type="Self.tblPlayedSong" Multiplicity="*" />
           <ReferentialConstraint>
@@ -96,7 +96,7 @@ warning 6002: The table/view 'AudioPlayer.dbo.vwUser' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblSong__UserId__07F6335A">
+        <Association Name="FK__tblSong__UserId__30F848ED">
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
           <End Role="tblSong" Type="Self.tblSong" Multiplicity="*" />
           <ReferentialConstraint>
@@ -142,11 +142,11 @@ warning 6002: The table/view 'AudioPlayer.dbo.vwUser' does not have a primary ke
     [vwUser].[Password] AS [Password]
     FROM [dbo].[vwUser] AS [vwUser]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__tblPlayed__SongI__0CBAE877" Association="Self.FK__tblPlayed__SongI__0CBAE877">
+          <AssociationSet Name="FK__tblPlayed__SongI__35BCFE0A" Association="Self.FK__tblPlayed__SongI__35BCFE0A">
             <End Role="tblSong" EntitySet="tblSong" />
             <End Role="tblPlayedSong" EntitySet="tblPlayedSong" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblSong__UserId__07F6335A" Association="Self.FK__tblSong__UserId__07F6335A">
+          <AssociationSet Name="FK__tblSong__UserId__30F848ED" Association="Self.FK__tblSong__UserId__30F848ED">
             <End Role="tblUser" EntitySet="tblUser" />
             <End Role="tblSong" EntitySet="tblSong" />
           </AssociationSet>
@@ -162,7 +162,7 @@ warning 6002: The table/view 'AudioPlayer.dbo.vwUser' does not have a primary ke
           </Key>
           <Property Name="PlayedSongId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SongId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="tblSong" Relationship="Self.FK__tblPlayed__SongI__0CBAE877" FromRole="tblPlayedSong" ToRole="tblSong" />
+          <NavigationProperty Name="tblSong" Relationship="Self.FK__tblPlayed__SongI__35BCFE0A" FromRole="tblPlayedSong" ToRole="tblSong" />
         </EntityType>
         <EntityType Name="tblSong">
           <Key>
@@ -173,8 +173,8 @@ warning 6002: The table/view 'AudioPlayer.dbo.vwUser' does not have a primary ke
           <Property Name="Author" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Duration" Type="Time" Nullable="false" Precision="7" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="tblPlayedSongs" Relationship="Self.FK__tblPlayed__SongI__0CBAE877" FromRole="tblSong" ToRole="tblPlayedSong" />
-          <NavigationProperty Name="tblUser" Relationship="Self.FK__tblSong__UserId__07F6335A" FromRole="tblSong" ToRole="tblUser" />
+          <NavigationProperty Name="tblPlayedSongs" Relationship="Self.FK__tblPlayed__SongI__35BCFE0A" FromRole="tblSong" ToRole="tblPlayedSong" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK__tblSong__UserId__30F848ED" FromRole="tblSong" ToRole="tblUser" />
         </EntityType>
         <EntityType Name="tblUser">
           <Key>
@@ -183,7 +183,7 @@ warning 6002: The table/view 'AudioPlayer.dbo.vwUser' does not have a primary ke
           <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Username" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="tblSongs" Relationship="Self.FK__tblSong__UserId__07F6335A" FromRole="tblUser" ToRole="tblSong" />
+          <NavigationProperty Name="tblSongs" Relationship="Self.FK__tblSong__UserId__30F848ED" FromRole="tblUser" ToRole="tblSong" />
         </EntityType>
         <EntityType Name="vwPlayedSong">
           <Key>
@@ -233,7 +233,7 @@ warning 6002: The table/view 'AudioPlayer.dbo.vwUser' does not have a primary ke
           <Property Name="Username" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
-        <Association Name="FK__tblPlayed__SongI__0CBAE877">
+        <Association Name="FK__tblPlayed__SongI__35BCFE0A">
           <End Role="tblSong" Type="Self.tblSong" Multiplicity="1" />
           <End Role="tblPlayedSong" Type="Self.tblPlayedSong" Multiplicity="*" />
           <ReferentialConstraint>
@@ -245,7 +245,7 @@ warning 6002: The table/view 'AudioPlayer.dbo.vwUser' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblSong__UserId__07F6335A">
+        <Association Name="FK__tblSong__UserId__30F848ED">
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
           <End Role="tblSong" Type="Self.tblSong" Multiplicity="*" />
           <ReferentialConstraint>
@@ -264,11 +264,11 @@ warning 6002: The table/view 'AudioPlayer.dbo.vwUser' does not have a primary ke
           <EntitySet Name="vwPlayedSongs" EntityType="Self.vwPlayedSong" />
           <EntitySet Name="vwSongs" EntityType="Self.vwSong" />
           <EntitySet Name="vwUsers" EntityType="Self.vwUser" />
-          <AssociationSet Name="FK__tblPlayed__SongI__0CBAE877" Association="Self.FK__tblPlayed__SongI__0CBAE877">
+          <AssociationSet Name="FK__tblPlayed__SongI__35BCFE0A" Association="Self.FK__tblPlayed__SongI__35BCFE0A">
             <End Role="tblSong" EntitySet="tblSongs" />
             <End Role="tblPlayedSong" EntitySet="tblPlayedSongs" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblSong__UserId__07F6335A" Association="Self.FK__tblSong__UserId__07F6335A">
+          <AssociationSet Name="FK__tblSong__UserId__30F848ED" Association="Self.FK__tblSong__UserId__30F848ED">
             <End Role="tblUser" EntitySet="tblUsers" />
             <End Role="tblSong" EntitySet="tblSongs" />
           </AssociationSet>
